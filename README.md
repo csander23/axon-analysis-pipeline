@@ -4,26 +4,41 @@ A comprehensive, automated tool for analyzing axon morphology in microscopy imag
 
 ## What This Pipeline Does
 
-- **Objective Thresholding**: Uses regression models to automatically set optimal thresholds for each image
-- **Soma Exclusion**: Removes cell bodies from analysis using MAP2 staining (confocal) or thickness filtering (slide scanning)
-- **Morphological Analysis**: Quantifies axon thickness, branching patterns, and structural features
-- **Thick vs Thin Classification**: Separates axon segments based on width and branching proximity
-- **Interactive Model Creation**: GUI tools for training custom threshold regression models
-- **Automated Processing**: Batch analysis of entire datasets with hierarchical organization
+### Confocal Analysis (ND2 Files)
+- **Channel Handling**: Processes Nikon ND2 files containing both MAP2 and L1CAM channels
+- **Soma Exclusion**: Uses MAP2 channel to identify and remove cell bodies from L1CAM analysis
+- **Thresholding**: Creates binary masks of L1CAM-positive axons using either:
+  - Regression model based on mean intensity above 15th percentile
+  - Manual threshold parameters
+- **Morphological Analysis**: Analyzes axon structure through:
+  - Skeletonization for centerline extraction
+  - Distance transform for thickness measurement
+  - Branch point detection
+  - Thick vs thin classification (≥3.7 pixels = thick)
+
+### Slide Scanning Analysis (JPG Files)
+- **Image Loading**: Processes red channel JPG files (with "_Red-" in filename)
+- **Normalization**: Converts images to 0-1 range using legacy-compatible method
+- **Thresholding**: Creates binary masks using either:
+  - Regression model based on whole image mean
+  - Legacy-compatible parameters (threshold ≈ 0.012 in normalized range)
+- **Soma Handling**: Excludes artificially thick regions based on distance transform
+- **Analysis**: Same morphological measurements as confocal, adapted for slide scanner resolution
 
 ## Data Structure Expected
 
 Your data should be organized in a two-level hierarchy:
 
+For Confocal Data:
 ```
-Your_Dataset/
+Confocal_Dataset/
 ├── Bioreplicate1/          # First level: Biological replicates
 │   ├── Control/            # Second level: Experimental conditions  
-│   │   ├── image1.tif
-│   │   ├── image2.tif
+│   │   ├── image1.nd2     # Nikon ND2 files with MAP2 and L1CAM channels
+│   │   ├── image2.nd2
 │   │   └── ...
 │   ├── Treatment/
-│   │   ├── image1.tif
+│   │   ├── image1.nd2
 │   │   └── ...
 ├── Bioreplicate2/
 │   ├── Control/
@@ -31,7 +46,23 @@ Your_Dataset/
 └── ...
 ```
 
-**Note**: The actual folder names don't matter - the pipeline automatically detects the structure based on directory levels.
+For Slide Scanning Data:
+```
+Slide_Scanning_Dataset/
+├── Bioreplicate1/
+│   ├── Control/
+│   │   ├── image1_Red-.jpg    # Red channel JPG files
+│   │   ├── image2_Red-.jpg
+│   │   └── ...
+│   └── Treatment/
+├── Bioreplicate2/
+└── ...
+```
+
+**Note**: 
+- Confocal pipeline expects Nikon ND2 files with both MAP2 and L1CAM channels
+- Slide scanning pipeline expects single-channel JPG files with "_Red-" in the filename
+- The actual bioreplicate and condition folder names don't matter - the pipeline uses directory levels to determine the structure
 
 ## Getting Started
 
@@ -227,7 +258,8 @@ This analysis classifies axon segments based on:
 
 **"No images found"**:
 - Check that your directory structure matches the expected hierarchy
-- Ensure image files have supported extensions (.tif, .tiff, .png, .jpg, .jpeg)
+- For confocal: Ensure files are Nikon ND2 format (.nd2)
+- For slide scanning: Ensure files are JPG format with "_Red-" in the filename
 
 **"Threshold too high/low"**:
 - For confocal: Try adjusting `percentile_threshold` in config.yaml
