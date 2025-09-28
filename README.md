@@ -72,7 +72,7 @@ Slide_Scanning_Dataset/
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/axon-analysis-pipeline.git
+git clone https://github.com/csander23/axon-analysis-pipeline.git
 cd axon-analysis-pipeline
 ```
 
