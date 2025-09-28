@@ -16,15 +16,14 @@ A comprehensive, automated tool for analyzing axon morphology in microscopy imag
   - Skeletonization for centerline extraction
   - Distance transform for thickness measurement
   - Branch point detection
-  - Thick vs thin classification (≥3.7 pixels = thick)
+  - Thick vs thin classification
 
 ### Slide Scanning Analysis (JPG Files)
-- **Image Loading**: Processes image files in common formats (JPG, PNG, TIF)
-- **Normalization**: Converts images to 0-1 range using legacy-compatible method
+- **Image Loading**: Processes image files in common formats (JPG, PNG)
 - **Thresholding**: Creates binary masks using either:
   - Regression model based on whole image mean
   - Legacy-compatible parameters (threshold ≈ 0.012 in normalized range)
-- **Soma Handling**: Excludes artificially thick regions based on distance transform
+- **Soma Handling**: Excludes artificially thick regions
 - **Analysis**: Same morphological measurements as confocal, adapted for slide scanner resolution
 
 ## Data Structure Expected
