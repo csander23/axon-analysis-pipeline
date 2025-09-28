@@ -6,25 +6,14 @@ A comprehensive, automated tool for analyzing axon morphology in microscopy imag
 
 ## What This Pipeline Does
 
-### Confocal Analysis (ND2 Files)
 - **Channel Handling**: Processes Nikon ND2 files containing both MAP2 and L1CAM channels
 - **Soma Exclusion**: Uses MAP2 channel to identify and remove cell bodies from L1CAM analysis
-- **Thresholding**: Creates binary masks of L1CAM-positive axons using either:
-  - Regression model based on mean intensity above 15th percentile
-  - Manual threshold parameters
+- **Thresholding**: Creates binary masks of L1CAM-positive axons using a regression model
 - **Morphological Analysis**: Analyzes axon structure through:
   - Skeletonization for centerline extraction
   - Distance transform for thickness measurement
   - Branch point detection
   - Thick vs thin classification
-
-### Slide Scanning Analysis (JPG Files)
-- **Image Loading**: Processes image files in common formats (JPG, PNG)
-- **Thresholding**: Creates binary masks using either:
-  - Regression model based on whole image mean
-  - Legacy-compatible parameters (threshold ≈ 0.012 in normalized range)
-- **Soma Handling**: Excludes artificially thick regions
-- **Analysis**: Same morphological measurements as confocal, adapted for slide scanner resolution
 
 ## Data Structure Expected
 
