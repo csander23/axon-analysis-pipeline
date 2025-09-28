@@ -17,7 +17,7 @@ A comprehensive, automated tool for analyzing axon morphology in microscopy imag
   - Thick vs thin classification (≥3.7 pixels = thick)
 
 ### Slide Scanning Analysis (JPG Files)
-- **Image Loading**: Processes red channel JPG files (with "_Red-" in filename)
+- **Image Loading**: Processes image files in common formats (JPG, PNG, TIF)
 - **Normalization**: Converts images to 0-1 range using legacy-compatible method
 - **Thresholding**: Creates binary masks using either:
   - Regression model based on whole image mean
@@ -51,8 +51,8 @@ For Slide Scanning Data:
 Slide_Scanning_Dataset/
 ├── Bioreplicate1/
 │   ├── Control/
-│   │   ├── image1_Red-.jpg    # Red channel JPG files
-│   │   ├── image2_Red-.jpg
+│   │   ├── image1.jpg         # Image files
+│   │   ├── image2.jpg
 │   │   └── ...
 │   └── Treatment/
 ├── Bioreplicate2/
@@ -61,7 +61,7 @@ Slide_Scanning_Dataset/
 
 **Note**: 
 - Confocal pipeline expects Nikon ND2 files with both MAP2 and L1CAM channels
-- Slide scanning pipeline expects single-channel JPG files with "_Red-" in the filename
+- Slide scanning pipeline processes image files in common formats (JPG, PNG, TIF)
 - The actual bioreplicate and condition folder names don't matter - the pipeline uses directory levels to determine the structure
 
 ## Getting Started
@@ -259,7 +259,7 @@ This analysis classifies axon segments based on:
 **"No images found"**:
 - Check that your directory structure matches the expected hierarchy
 - For confocal: Ensure files are Nikon ND2 format (.nd2)
-- For slide scanning: Ensure files are JPG format with "_Red-" in the filename
+- For slide scanning: Ensure files are in supported formats (JPG, PNG, TIF)
 
 **"Threshold too high/low"**:
 - For confocal: Try adjusting `percentile_threshold` in config.yaml
