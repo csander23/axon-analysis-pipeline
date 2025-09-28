@@ -2,7 +2,7 @@
 
 A comprehensive, automated tool for analyzing axon morphology in microscopy images. This pipeline supports both **confocal microscopy** (with MAP2/L1CAM staining) and **slide scanning** (fluorescent protein expression) data.
 
-## 🔬 What This Pipeline Does
+## What This Pipeline Does
 
 - **Objective Thresholding**: Uses regression models to automatically set optimal thresholds for each image
 - **Soma Exclusion**: Removes cell bodies from analysis using MAP2 staining (confocal) or thickness filtering (slide scanning)
@@ -11,7 +11,7 @@ A comprehensive, automated tool for analyzing axon morphology in microscopy imag
 - **Interactive Model Creation**: GUI tools for training custom threshold regression models
 - **Automated Processing**: Batch analysis of entire datasets with hierarchical organization
 
-## 📁 Data Structure Expected
+## Data Structure Expected
 
 Your data should be organized in a two-level hierarchy:
 
@@ -33,7 +33,7 @@ Your_Dataset/
 
 **Note**: The actual folder names don't matter - the pipeline automatically detects the structure based on directory levels.
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Step 1: Download the Code
 
@@ -55,19 +55,13 @@ conda env create -f environment.yml
 conda activate axon-analysis
 ```
 
-**That's it!** The environment file handles all the complex dependencies including:
-- Python 3.8
-- Image processing libraries (scikit-image, opencv, aicsimageio)
-- Scientific computing (numpy, pandas, scipy)
-- Machine learning (scikit-learn)
-- Visualization (matplotlib, ipywidgets)
-- Jupyter notebook support
+The environment file handles all the complex dependencies including Python 3.8, image processing libraries (scikit-image, opencv, aicsimageio), scientific computing (numpy, pandas, scipy), machine learning (scikit-learn), visualization (matplotlib, ipywidgets), and Jupyter notebook support.
 
 ### Step 3: Choose Your Analysis Type
 
 The pipeline has two separate workflows:
 
-## 🔬 Confocal Microscopy Analysis
+## Confocal Microscopy Analysis
 
 **Use this for**: Images with MAP2 and L1CAM staining from confocal microscopes
 
@@ -127,7 +121,7 @@ When you create a regression model, it saves three files:
 1. Copy the `.json` file to `Active_Model_and_Configuration_Directory/`
 2. Set `use_regression_model: true` in `config.yaml`
 
-## 🖼️ Slide Scanning Analysis
+## Slide Scanning Analysis
 
 **Use this for**: Fluorescent protein images from slide scanners
 
@@ -173,7 +167,7 @@ threshold_coefficient: 1.4865     # Legacy slope
 width_threshold: 3.7              # Same thick/thin threshold as confocal
 ```
 
-## 📊 Understanding Your Results
+## Understanding Your Results
 
 Both pipelines create organized output folders:
 
@@ -199,7 +193,7 @@ Each `*_summary.png` shows a 2x2 grid:
 - **Bottom Left**: Skeleton analysis (Blue=normal, Pink=high branching, Yellow=excluded thick regions)
 - **Bottom Right**: Thick vs thin classification (Red=thick, Blue=thin) - if enabled
 
-## 🎛️ Advanced Configuration
+## Advanced Configuration
 
 ### Regression Models Explained
 
@@ -227,7 +221,7 @@ This analysis classifies axon segments based on:
 - **Branching Context**: Segments near many branch points are reclassified as "thin"
 - **Filtering**: Excludes artificially thick regions (soma, overlapping axons)
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -254,14 +248,14 @@ This analysis classifies axon segments based on:
 3. Look at the summary images to see if thresholding is working
 4. Try the manual threshold parameters before creating custom models
 
-## 📈 Performance Notes
+## Performance Notes
 
 - **Processing Speed**: ~1-5 seconds per image depending on size and complexity
 - **Memory Usage**: Designed to handle large datasets efficiently
 - **Parallel Processing**: Automatically uses multiple CPU cores when available
 - **Batch Processing**: Can process hundreds of images unattended
 
-## 🔄 Updating the Pipeline
+## Updating the Pipeline
 
 To get the latest version:
 
@@ -272,7 +266,3 @@ conda env update -f environment.yml
 ```
 
 This ensures you have the latest features and bug fixes while maintaining compatibility with your existing data and models.
-
----
-
-**Ready to analyze your axon data?** Start with the Quick Start section for your imaging modality!
