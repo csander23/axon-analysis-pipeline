@@ -1,6 +1,8 @@
 # Axon Analysis Pipeline
 
-A comprehensive, automated tool for analyzing axon morphology in microscopy images. This pipeline supports both **confocal microscopy** (with MAP2/L1CAM staining) and **slide scanning** (fluorescent protein expression) data.
+Built by Charles Sander at Stanford University in the Südhof Lab.
+
+A comprehensive, automated tool for analyzing axon morphology in microscopy images. This pipeline supports both **confocal microscopy** (with MAP2 and axonal staining) and **slide scanning** (fluorescent protein expression) data.
 
 ## What This Pipeline Does
 
@@ -145,7 +147,7 @@ width_threshold: 3.7               # Pixels - threshold for thick classification
 
 When you create a regression model, it saves three files:
 - `confocal_regression_model_TIMESTAMP.json` - The actual model
-- `confocal_regression_model_TIMESTAMP.txt` - Human-readable documentation  
+- `confocal_regression_model_TIMESTAMP.txt` - readable documentation  
 - `confocal_regression_plot_TIMESTAMP.png` - Visualization of the model
 
 **To use your model**:
@@ -279,13 +281,6 @@ This analysis classifies axon segments based on:
 2. Verify your data structure matches the expected hierarchy
 3. Look at the summary images to see if thresholding is working
 4. Try the manual threshold parameters before creating custom models
-
-## Performance Notes
-
-- **Processing Speed**: ~1-5 seconds per image depending on size and complexity
-- **Memory Usage**: Designed to handle large datasets efficiently
-- **Parallel Processing**: Automatically uses multiple CPU cores when available
-- **Batch Processing**: Can process hundreds of images unattended
 
 ## Updating the Pipeline
 
