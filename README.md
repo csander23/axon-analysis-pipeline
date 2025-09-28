@@ -6,8 +6,7 @@ A comprehensive, automated tool for analyzing axon morphology in microscopy imag
 
 ## What This Pipeline Does
 
-- **Channel Handling**: Processes Nikon ND2 files containing both MAP2 and L1CAM channels
-- **Soma Exclusion**: Uses MAP2 channel to identify and remove cell bodies from L1CAM analysis
+- **Soma Exclusion**: Uses MAP2 channel to identify and remove cell bodies from confocal images, and other computer vision tools to remove soma from slide scanning images
 - **Thresholding**: Creates binary masks of L1CAM-positive axons using a regression model
 - **Morphological Analysis**: Analyzes axon structure through:
   - Skeletonization for centerline extraction
