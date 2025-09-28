@@ -1,0 +1,16 @@
+name: axon_analysis
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9  # Specify a stable Python version
+  - pip
+  - numpy
+  - scipy
+  - pandas
+  - matplotlib
+  - scikit-image
+  - pyyaml
+  - aicsimageio  # For ND2 file handling
+  - pip:
+    - nd2reader  # Backup for ND2 files if aicsimageio fails

@@ -1,0 +1,82 @@
+# Configuration file for branch-based-snakes.py
+# L1CAM Analysis - Sliding Window Processing Configuration
+
+# Output Organization
+output_subdirs:
+  images: "Images"              # For summary images of each analyzed image
+  plots: "Plots"               # For final plots (CDFs, overlays)
+  results: "Results"           # For final CSVs and statistics
+
+# Data Structure Configuration
+use_hierarchical_structure: true  # Set to true for Group_X/Condition_Y structure
+auto_detect_groups: true  # Automatically detect all Group_X folders
+auto_detect_conditions: true  # Automatically detect all Condition_Y folders
+
+# Analysis Parameters
+min_sizes: [30]
+conditions: []  # Will be auto-detected if auto_detect_conditions is true
+groups: []  # Will be auto-detected if auto_detect_groups is true
+
+# Color mapping for conditions (will be auto-generated if not specified)
+colors: {}  # Will be auto-generated with distinct colors
+
+# Image Processing Parameters
+gaussian_sigma: 1.0
+soma_gaussian_sigma: 5
+distance_threshold: 15  # pixels for soma extraction
+opening_disk_size: 20   # for soma mask refinement
+dilation_disk_size: 20  # for soma mask safety margin
+
+# Morphological Operations
+opening_disk_size_filter: 2
+closing_disk_size_filter: 1
+
+# Spider Analysis Parameters
+window_length: 20  # walk length from each branch point
+pink_density_threshold: 0.05
+pink_thickness_threshold: 3
+
+# Threshold Calculation Method
+# Set use_regression_model: true to use active_model.json
+# Set use_regression_model: false to use manual parameters below
+# Set use_raw_threshold: true to use a simple fixed threshold value
+use_regression_model: false
+use_raw_threshold: false  # Set to true for simple fixed threshold
+
+# Raw Threshold Parameters (used if use_raw_threshold is true)
+raw_threshold_value: 120.0  # Fixed threshold value for L1CAM
+
+# Manual Threshold Parameters (used if use_regression_model is false and use_raw_threshold is false)
+percentile_threshold: 15  # Percentile for calculating mean above value
+threshold_intercept: 82.5909  # Base threshold value
+threshold_coefficient: 0.3027  # Multiplier for mean above value
+
+# Manual Replicate Offsets
+# These are added to the threshold for each group/replicate
+replicate_offsets:
+  Group_A: -35  # Example offset for Group_A
+  Group_B: 20   # Example offset for Group_B
+  Group_C: -55  # Example offset for Group_C
+  Group_D: 5    # Example offset for Group_D
+
+# Channel Names
+fitc_channel_name: "FITC"
+tritc_channel_name: "TRITC"
+
+# Component Visualization Parameters
+component_saturation: 0.8  # Color saturation for component visualization
+component_value: 0.9      # Color value for component visualization
+golden_ratio: 0.618033988749895  # Used for color spacing in visualization
+
+# Output Parameters
+save_summary_plots: true  # Set to true to enable summary plot generation
+dpi: 300  # DPI for image outputs
+plot_dpi: 200  # DPI for plot outputs
+
+# Thick vs Thin Analysis Parameters
+enable_thick_thin_analysis: true  # Set to true to enable thick vs thin analysis
+width_threshold: 6  # Half-width in pixels for thick vs thin classification
+branch_distance_threshold: 12  # Distance in pixels to check for nearby branch points
+min_wide_region_size: 10  # Minimum size for a region to be considered wide
+branch_count_threshold: 2  # Number of nearby branch points to reclassify as thin
+normalize_to_wt: true  # Set to true to normalize thick vs thin ratios to WT values

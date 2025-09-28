@@ -1,0 +1,17 @@
+name: axon-analysis
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.8
+  - numpy
+  - pandas
+  - scikit-image
+  - matplotlib
+  - opencv
+  - ipywidgets
+  - jupyter
+  - pip
+  - pip:
+    - aicsimageio
+    - tifffile

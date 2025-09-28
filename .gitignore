@@ -1,0 +1,72 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# Data and Results
+**/Data_Output/
+**/Results/
+**/Plots/
+**/Images/
+*.csv
+*.pkl
+*.json
+
+# Environment
+.env
+.venv
+env/
+venv/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Large files
+*.tif
+*.tiff
+*.nd2
+*.lsm
+*.czi
+*.jpg
+*.jpeg
+*.png
+
+# Keep example data and results
+!example_data/**/*.tif
+!example_data/**/*.png
+!example_results/**/*.png
+!example_results/**/*.csv

@@ -1,0 +1,94 @@
+# Configuration file for slide-scanning-analysis.py
+# L1CAM Analysis - Slide Scanning Processing Configuration
+
+# Output Organization
+output_subdirs:
+  images: "Images"              # For summary images of each analyzed image
+  plots: "Plots"               # For final plots (CDFs, overlays)
+  results: "Results"           # For final CSVs and statistics
+
+# Data Structure Configuration
+use_hierarchical_structure: true  # Set to true for Group_X/Condition_Y structure
+auto_detect_groups: true  # Automatically detect all Group_X folders
+auto_detect_conditions: true  # Automatically detect all Condition_Y folders
+
+# Analysis Parameters
+min_sizes: [30]
+conditions: []  # Will be auto-detected if auto_detect_conditions is true
+groups: []  # Will be auto-detected if auto_detect_groups is true
+
+# Color mapping for conditions (will be auto-generated if not specified)
+colors: {}  # Will be auto-generated with distinct colors
+
+# Image Processing Parameters
+gaussian_sigma: 1.0
+soma_gaussian_sigma: 5
+distance_threshold: 15  # pixels for soma extraction
+opening_disk_size: 20   # for soma mask refinement
+dilation_disk_size: 20  # for soma mask safety margin
+
+# Morphological Operations
+opening_disk_size_filter: 2
+closing_disk_size_filter: 1
+
+# Spider Analysis Parameters
+window_length: 20  # walk length from each branch point
+pink_density_threshold: 0.05
+pink_thickness_threshold: 3
+
+# Threshold Calculation Method
+# Set use_regression_model: true to use active_model.json
+# Set use_regression_model: false to use manual parameters below
+# Set use_raw_threshold: true to use a simple fixed threshold value
+use_regression_model: false  # No regression model available yet
+use_raw_threshold: false  # Use manual parameters based on legacy model
+
+# Raw Threshold Parameters (used if use_raw_threshold is true)
+raw_threshold_value: 0.01  # Legacy-based threshold for slide scanning
+
+# Manual Threshold Parameters (used if use_regression_model is false and use_raw_threshold is false)
+percentile_threshold: 0.012  # Legacy used 0.012 as absolute threshold in 0-1 range
+threshold_intercept: -0.003583  # Legacy intercept value
+threshold_coefficient: 1.4865  # Legacy slope value
+
+# Manual Replicate Offsets (legacy model used batch-specific thresholds)
+# These are added to the threshold for each group/replicate
+replicate_offsets:
+  Bioreplicate1: 0  # Legacy used batch-specific regression
+  Bioreplicate2: 0
+  Bioreplicate3: 0
+  Bioreplicate4: 0
+
+# Channel Names (slide scanning typically uses different channel setup)
+fitc_channel_name: "FITC"
+tritc_channel_name: "TRITC"
+
+# Component Visualization Parameters
+component_saturation: 0.8  # Color saturation for component visualization
+component_value: 0.9      # Color value for component visualization
+golden_ratio: 0.618033988749895  # Used for color spacing in visualization
+
+# Output Parameters
+save_summary_plots: true  # Set to true to enable summary plot generation
+dpi: 300  # DPI for image outputs
+plot_dpi: 200  # DPI for plot outputs
+
+# Thick vs Thin Analysis Parameters
+enable_thick_thin_analysis: true  # Set to true to enable thick vs thin analysis
+width_threshold: 3.7  # Half-width in pixels for thick vs thin classification (from legacy)
+branch_distance_threshold: 12  # Distance in pixels to check for nearby branch points
+min_wide_region_size: 10  # Minimum size for a region to be considered wide
+branch_count_threshold: 2  # Number of nearby branch points to reclassify as thin
+normalize_to_wt: true  # Set to true to normalize thick vs thin ratios to WT values
+
+# Slide Scanning Specific Parameters
+parallel_processing:
+  enabled: true
+  max_workers: 12
+  chunk_size: 3
+  progress_update_interval: 5
+  memory_optimization: true
+
+# Image format and loading parameters
+image_formats: [".tif", ".tiff", ".png", ".jpg", ".jpeg"]
+load_as_grayscale: false  # Load color images for channel separation
