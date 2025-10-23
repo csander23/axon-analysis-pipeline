@@ -1,6 +1,6 @@
 # Axon Analysis Pipeline
 
-Built by Charles Sander and Silvia Natale in the Südhof Lab at Stanford University.
+Built by Charles Sander and Silvia Natale in the Südhof Lab at Stanford University. For an extensive explanation, please visit: https://docs.google.com/document/d/1RMxxPYNSxFLwxrOy8YfPED21cPqlwlv6BJPSiBEINco/edit?tab=t.0
 
 A comprehensive, automated tool for analyzing axon morphology in microscopy images. This pipeline supports both **confocal microscopy** (with MAP2 and axonal staining) and **slide scanning** (fluorescent protein expression) data.
 
